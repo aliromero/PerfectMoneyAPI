@@ -1,7 +1,7 @@
 <?php
 
 
-namespace AyubIRZ\PerfectMoneyAPI;
+namespace Romero\PerfectMoneyAPI;
 
 use Exception;
 

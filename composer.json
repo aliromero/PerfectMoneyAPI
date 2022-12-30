@@ -14,7 +14,7 @@
   },
   "autoload": {
     "psr-4": {
-      "AyubIRZ\\PerfectMoneyAPI\\": "src"
+      "Romero\\PerfectMoneyAPI\\": "src"
     }
   }
 }
