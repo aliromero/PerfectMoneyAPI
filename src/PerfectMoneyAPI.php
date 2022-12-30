@@ -38,7 +38,7 @@ class PerfectMoneyAPI
     public function getAccountName($account)
     {
         // trying to open URL to process PerfectMoney getAccountName request
-        $data = file_get_contents("https://perfectmoney.is/acct/acc_name.asp?AccountID={$this->AccountID}&PassPhrase={$this->PassPhrase}&Account={$account}");
+        $data = file_get_contents("https://perfectmoney.com/acct/acc_name.asp?AccountID={$this->AccountID}&PassPhrase={$this->PassPhrase}&Account={$account}");
 
         if($data == 'ERROR: Can not login with passed AccountID and PassPhrase'){
 
@@ -61,7 +61,7 @@ class PerfectMoneyAPI
     public function getBalance($account = null)
     {
         // trying to open URL to process PerfectMoney Balance request
-        $data = file_get_contents("https://perfectmoney.is/acct/balance.asp?AccountID={$this->AccountID}&PassPhrase={$this->PassPhrase}");
+        $data = file_get_contents("https://perfectmoney.com/acct/balance.asp?AccountID={$this->AccountID}&PassPhrase={$this->PassPhrase}");
 
         // searching for hidden fields
         if (!preg_match_all("/<input name='(.*)' type='hidden' value='(.*)'>/", $data, $result, PREG_SET_ORDER)) {
@@ -89,7 +89,7 @@ class PerfectMoneyAPI
      */
     public function transferFund($fromAccount, $toAccount, $amount, $paymentID = null, $memo = null)
     {
-        $urlString = "https://perfectmoney.is/acct/confirm.asp?AccountID={$this->AccountID}&PassPhrase={$this->PassPhrase}&Payer_Account={$fromAccount}&Payee_Account={$toAccount}&Amount={$amount}&PAY_IN=1";
+        $urlString = "https://perfectmoney.com/acct/confirm.asp?AccountID={$this->AccountID}&PassPhrase={$this->PassPhrase}&Payer_Account={$fromAccount}&Payee_Account={$toAccount}&Amount={$amount}&PAY_IN=1";
 
         $urlString .= ($paymentID != null) ? "&PAYMENT_ID={$paymentID}" : "";
 
@@ -121,7 +121,7 @@ class PerfectMoneyAPI
     public function createEV($payerAccount, $amount)
     {
         // trying to open URL to process PerfectMoney Balance request
-        $data = file_get_contents("https://perfectmoney.is/acct/ev_create.asp?AccountID={$this->AccountID}&PassPhrase={$this->PassPhrase}&Payer_Account={$payerAccount}&Amount={$amount}");
+        $data = file_get_contents("https://perfectmoney.com/acct/ev_create.asp?AccountID={$this->AccountID}&PassPhrase={$this->PassPhrase}&Payer_Account={$payerAccount}&Amount={$amount}");
 
         // searching for hidden fields
         if (!preg_match_all("/<input name='(.*)' type='hidden' value='(.*)'>/", $data, $result, PREG_SET_ORDER)) {
@@ -141,7 +141,7 @@ class PerfectMoneyAPI
     public function transferEV($toAccount, $EVnumber, $EVactivationCode)
     {
         // trying to open URL to process PerfectMoney Balance request
-        $data = file_get_contents("https://perfectmoney.is/acct/ev_activate.asp?AccountID={$this->AccountID}&PassPhrase={$this->PassPhrase}&Payee_Account={$toAccount}&ev_number={$EVnumber}&ev_code={$EVactivationCode}");
+        $data = file_get_contents("https://perfectmoney.com/acct/ev_activate.asp?AccountID={$this->AccountID}&PassPhrase={$this->PassPhrase}&Payee_Account={$toAccount}&ev_number={$EVnumber}&ev_code={$EVactivationCode}");
 
         // searching for hidden fields
         if (!preg_match_all("/<input name='(.*)' type='hidden' value='(.*)'>/", $data, $result, PREG_SET_ORDER)) {
