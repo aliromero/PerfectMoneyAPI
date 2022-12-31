@@ -4,7 +4,7 @@
 namespace Romero\PerfectMoney;
 
 use Exception;
-use Illuminate\Http\Request;
+
 
 class PerfectMoney
 {
