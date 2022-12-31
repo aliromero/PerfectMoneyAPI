@@ -4,7 +4,7 @@ namespace Romero\PerfectMoney;
 
 use Illuminate\Support\ServiceProvider;
 
-class LaravelZibalServiceProvider extends ServiceProvider
+class PMServiceProvider extends ServiceProvider
 {
     /**
      * Register the service provider.
