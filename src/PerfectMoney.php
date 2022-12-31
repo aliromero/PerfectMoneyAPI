@@ -4,6 +4,7 @@
 namespace Romero\PerfectMoney;
 
 use Exception;
+use Illuminate\Http\Request;
 
 class PerfectMoney
 {
@@ -193,36 +194,17 @@ class PerfectMoney
         return $array;
     }
 
-    public function submitForm($payment_id,$payment_amount)
+    public function generateHash(Request $request)
     {
-        ?>
-        <html xmlns="http://www.w3.org/1999/xhtml">
-        <head>
-            <script type="text/javascript">
-                function closethisasap() {
-                    document.forms["redirectpost"].submit();
-                }
-            </script>
-        </head>
-        <body onload="closethisasap();">
-        <form name="redirectpost" method="post" action="https://perfectmoney.com/api/step1.asp">
-            <?php
-            echo '<input type="hidden" name="PAYEE_ACCOUNT" value="' . $this->marchant_id . '"> ';
-            echo '<input type="hidden" name="PAYEE_NAME" value="' . $this->marchant_name . '"> ';
-            echo '<input type="hidden" name="PAYMENT_ID" value="' . $payment_id . '"> ';
-            echo '<input type="hidden" name="PAYMENT_AMOUNT" value="' . $payment_amount . '"> ';
-            echo '<input type="hidden" name="PAYMENT_UNITS" value="' . $this->units . '"> ';
-            echo '<input type="hidden" name="STATUS_URL" value="' . $this->status_url . '"> ';
-            echo '<input type="hidden" name="PAYMENT_URL" value="' . $this->payment_url . '"> ';
-            echo '<input type="hidden" name="PAYMENT_URL_METHOD" value="' . $this->payment_url_method . '"> ';
-            echo '<input type="hidden" name="NOPAYMENT_URL" value="' . $this->nopayment_url . '"> ';
-            echo '<input type="hidden" name="NOPAYMENT_URL_METHOD" value="' . $this->nopayment_url_method . '"> ';
-            echo '<input type="hidden" name="SUGGESTED_MEMO" value="' . $this->suggested_memo . '"> ';
-            ?>
-        </form>
-        </body>
-        </html>
-        <?php
-        exit;
+        $string = '';
+        $string .= $request->input('PAYMENT_ID') . ':';
+        $string .= $request->input('PAYEE_ACCOUNT') . ':';
+        $string .= $request->input('PAYMENT_AMOUNT') . ':';
+        $string .= $request->input('PAYMENT_UNITS') . ':';
+        $string .= $request->input('PAYMENT_BATCH_NUM') . ':';
+        $string .= $request->input('PAYER_ACCOUNT') . ':';
+        $string .= strtoupper(md5($this->alt_passphrase)) . ':';
+        $string .= $request->input('TIMESTAMPGMT');
+        return strtoupper(md5($string));
     }
 }
