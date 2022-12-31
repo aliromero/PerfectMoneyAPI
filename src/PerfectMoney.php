@@ -194,17 +194,5 @@ class PerfectMoney
         return $array;
     }
 
-    public function generateHash(Request $request)
-    {
-        $string = '';
-        $string .= $request->input('PAYMENT_ID') . ':';
-        $string .= $request->input('PAYEE_ACCOUNT') . ':';
-        $string .= $request->input('PAYMENT_AMOUNT') . ':';
-        $string .= $request->input('PAYMENT_UNITS') . ':';
-        $string .= $request->input('PAYMENT_BATCH_NUM') . ':';
-        $string .= $request->input('PAYER_ACCOUNT') . ':';
-        $string .= strtoupper(md5($this->alt_passphrase)) . ':';
-        $string .= $request->input('TIMESTAMPGMT');
-        return strtoupper(md5($string));
-    }
+
 }
