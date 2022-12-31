@@ -10,11 +10,25 @@
     }
   ],
   "require": {
-    "php": ">=7.0"
+    "php": ">=8.0",
+    "laravel/framework": "5.*|6.*|7.*|8.*|9.*"
   },
   "autoload": {
     "psr-4": {
-      "Romero\\PerfectMoneyAPI\\": "src"
+      "Llabbasmkhll\\LaravelZibal\\": "src"
+    }
+  },
+  "require-dev": {
+    "orchestra/testbench": "6.0"
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Romero\\PerfectMoneyAPI\\PMServiceProvider"
+      ],
+      "aliases": {
+        "PerfectMoney": "Romero\\PerfectMoneyAPI\\Facades\\PerfectMoney"
+      }
     }
   }
 }
