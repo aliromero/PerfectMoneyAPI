@@ -193,7 +193,7 @@ class PerfectMoney
         return $array;
     }
 
-    public function submitForm($data = [])
+    public function submitForm($payment_id,$payment_amount)
     {
         ?>
         <html xmlns="http://www.w3.org/1999/xhtml">
@@ -209,8 +209,8 @@ class PerfectMoney
             <?php
             echo '<input type="hidden" name="PAYEE_ACCOUNT" value="' . $this->marchant_id . '"> ';
             echo '<input type="hidden" name="PAYEE_NAME" value="' . $this->marchant_name . '"> ';
-            echo '<input type="hidden" name="PAYMENT_ID" value="' . $data['payment_id'] . '"> ';
-            echo '<input type="hidden" name="PAYMENT_AMOUNT" value="' . $data['payment_amount'] . '"> ';
+            echo '<input type="hidden" name="PAYMENT_ID" value="' . $payment_id . '"> ';
+            echo '<input type="hidden" name="PAYMENT_AMOUNT" value="' . $payment_amount . '"> ';
             echo '<input type="hidden" name="PAYMENT_UNITS" value="' . $this->units . '"> ';
             echo '<input type="hidden" name="STATUS_URL" value="' . $this->status_url . '"> ';
             echo '<input type="hidden" name="PAYMENT_URL" value="' . $this->payment_url . '"> ';
