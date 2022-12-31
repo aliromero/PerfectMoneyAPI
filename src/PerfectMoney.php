@@ -93,7 +93,7 @@ class PerfectMoney
      * get the balance for the wallet or a specific account inside a wallet
      *
      */
-    public function getBalance($account = null)
+    public function getBalance()
     {
         // trying to open URL to process PerfectMoney Balance request
         $data = file_get_contents("https://perfectmoney.com/acct/balance.asp?AccountID={$this->account_id}&PassPhrase={$this->passphrase}"
@@ -112,11 +112,9 @@ class PerfectMoney
             $array[$item[1]] = $item[2];
         }
 
-        if ($account == null) {
-            return $array;
-        }
 
-        return $array[$account] ?? false;
+
+        return $array[$this->marchant_id] ?? false;
     }
 
 
