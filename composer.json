@@ -24,10 +24,10 @@
   "extra": {
     "laravel": {
       "providers": [
-        "Romero\\PerfectMoneyAPI\\PMServiceProvider"
+        "Romero\\PerfectMoney\\PMServiceProvider"
       ],
       "aliases": {
-        "PerfectMoney": "Romero\\PerfectMoneyAPI\\Facades\\PerfectMoney"
+        "PerfectMoney": "Romero\\PerfectMoney\\Facades\\PerfectMoney"
       }
     }
   }
